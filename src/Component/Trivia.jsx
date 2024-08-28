@@ -99,7 +99,7 @@ const Trivia = () => {
     setIsGameStart(true);
     setTimeout(() => {
       setIsLoading(false);
-    }, 3000);
+    }, 5000);
   };
 
   const handleRestartQuiz = () => {

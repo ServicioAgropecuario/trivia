@@ -403,6 +403,10 @@ body{
   animation: fadeInSpecialist 1.5s ease-out forwards 3s; /* 3s delay */
 }
 
+.answer-option.disabled {
+  pointer-events: none;
+  opacity: 0.6;
+}
 
 @keyframes slideUp {
   0% {
