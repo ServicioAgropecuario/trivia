@@ -44,6 +44,13 @@ const Trivia = () => {
   const [isGameStart, setIsGameStart] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
 
+  // Estado para el contador de encuestas
+  const [surveyCount, setSurveyCount] = useState(() => {
+    const savedCount = localStorage.getItem('surveyCount');
+    console.log("Initial survey count from localStorage:", savedCount);
+    return savedCount ? parseInt(savedCount, 10) : 0;
+  });
+
   useEffect(() => {
     if (selectedAnswer !== null) {
       const isAnswerCorrect =
@@ -54,7 +61,7 @@ const Trivia = () => {
         ? "¡Correcto! Seguimos en carrera."
         : "Upps, creo que va a tener que conocer más sobre el mundo del maní! Te esperamos en nuestro stand.";
 
-      setFeedback({ message: feedbackMessage});
+      setFeedback({ message: feedbackMessage });
 
       const feedbackDuration = isAnswerCorrect ? 3000 : 3000; // Ajusta el tiempo según sea necesario
 
@@ -76,17 +83,24 @@ const Trivia = () => {
         }
       }, feedbackDuration);
 
+      // Incrementar el contador en la primera pregunta
+      if (currentQuestion === 0 && selectedAnswer !== null && isGameStart) {
+        const newCount = surveyCount + 1;
+        console.log("Updating survey count:", newCount);
+        setSurveyCount(newCount);
+        localStorage.setItem('surveyCount', newCount);
+      }
       if (showCongratulations) {
         // Reiniciar automáticamente después de 10 segundos
         const autoRestartTimer = setTimeout(() => {
           handleRestartQuiz();
-        }, 10000);  
+        }, 10000);
         return () => clearTimeout(autoRestartTimer);
       }
 
       return () => clearTimeout(timer);
     }
-  }, [selectedAnswer, currentQuestion, showCongratulations]);
+  }, [selectedAnswer, currentQuestion, showCongratulations, isGameStart]);
 
   const handleStartQuiz = () => {
     setIsLoading(true);
@@ -99,7 +113,7 @@ const Trivia = () => {
     setIsGameStart(true);
     setTimeout(() => {
       setIsLoading(false);
-    }, 5000);
+    }, 6000);
   };
 
   const handleRestartQuiz = () => {
@@ -121,21 +135,21 @@ const Trivia = () => {
   return (
     <div className="trivia-container">
       {!showCongratulations && !showQuiz ? (
-      <div className="start-container" onClick={handleStartQuiz}>
-      <div className="start-image-wrapper">
-        <img
-          src={inicioImagen}
-          alt="Desafío para MANÍaticos"
-          className="start-image"
-        />
-        <img src={imgCornerWhite} alt="Imagen Izquierda" className="start-image-left" />
-        <img src={Logo} alt="Imagen Derecha" className="start-image-right" />
-      </div>
-      <p className="start-text">
-        Desafío para <br />
-        MANÍaticos
-      </p>
-    </div>
+        <div className="start-container" onClick={handleStartQuiz}>
+          <div className="start-image-wrapper">
+            <img
+              src={inicioImagen}
+              alt="Desafío para MANÍaticos"
+              className="start-image"
+            />
+            <img src={imgCornerWhite} alt="Imagen Izquierda" className="start-image-left" />
+            <img src={Logo} alt="Imagen Derecha" className="start-image-right" />
+          </div>
+          <p className="start-text">
+            Desafío para <br />
+            MANÍaticos
+          </p>
+        </div>
       ) : (
         <>
           {showCongratulations ? (
@@ -152,9 +166,9 @@ const Trivia = () => {
                   premio
                 </div>
                 <img src={imgCornerWhite} alt="Imagen Izquierda" className="start-image-left-congrats" />
-                <img src={Logo} alt="Imagen Derecha" className="start-image-right-congrat" />                
-              </div>              
-            </div>            
+                <img src={Logo} alt="Imagen Derecha" className="start-image-right-congrat" />
+              </div>
+            </div>
           ) : (
             <div className={`quiz-wrapper ${showQuiz ? "animate-quiz" : ""}`}>
               <div className="quiz-container">
@@ -166,23 +180,21 @@ const Trivia = () => {
                   src={imgCorner}
                   className={`blue-corner ${
                     feedback ? "feedback-visible" : ""
-                  } ${isGameStart ? "game-start" : ""}`}                  
+                  } ${isGameStart ? "game-start" : ""}`}
                 />
-                  {feedback && (
-                    <span
-                      className={`feedback-text ${
-                        isCorrect ? "correct" : "incorrect"
-                      }`}
-                    >
-                      {feedback.message}
-                    </span>
-                  )}            
+                {feedback && (
+                  <span
+                    className={`feedback-text ${
+                      isCorrect ? "correct" : "incorrect"
+                    }`}
+                  >
+                    {feedback.message}
+                  </span>
+                )}
                 <div className="fill"></div>
                 <div className="quiz-content">
                   <div className="question-info">
-                    <span>
-                      {currentQuestion + 1}.
-                    </span>
+                    <span>{currentQuestion + 1}.</span>
                   </div>
                   <div className="question-section">
                     <p>{questions[currentQuestion].question}</p>
@@ -208,17 +220,13 @@ const Trivia = () => {
                       </div>
                     ))}
                   </div>
-                </div>                              
-              </div>         
-              <img
-                src={maniImagen}
-                alt="Maní"
-                className="mani-image"
-              />                                                 
+                </div>
+              </div>
+              <img src={maniImagen} alt="Maní" className="mani-image" />
             </div>
           )}
         </>
-      )}
+      )}     
     </div>
   );
 };
