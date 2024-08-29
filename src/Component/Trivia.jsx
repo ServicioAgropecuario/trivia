@@ -47,7 +47,7 @@ const Trivia = () => {
   // Estado para el contador de encuestas
   const [surveyCount, setSurveyCount] = useState(() => {
     const savedCount = localStorage.getItem('surveyCount');
-    console.log("Initial survey count from localStorage:", savedCount);
+    console.log("Valor inicial del contador del localStorage:", savedCount);
     return savedCount ? parseInt(savedCount, 10) : 0;
   });
 
@@ -86,7 +86,7 @@ const Trivia = () => {
       // Incrementar el contador en la primera pregunta
       if (currentQuestion === 0 && selectedAnswer !== null && isGameStart) {
         const newCount = surveyCount + 1;
-        console.log("Updating survey count:", newCount);
+        console.log("Contador de encuestas actualizado a:", newCount);
         setSurveyCount(newCount);
         localStorage.setItem('surveyCount', newCount);
       }
