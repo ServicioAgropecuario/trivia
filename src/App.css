@@ -549,17 +549,16 @@ body{
     opacity: 1;
   }
 }
-
-
+ 
 @media only screen and (min-width:2000px) {
   .start-image-left-congrats{
-    position: absolute;
-    left: 800px;
+    position: absolute !important;
+    left: 800px !important;
   }
   
   .start-image-right-congrat{
-    position: absolute;
-    right: 1000px;
+    position: absolute !important;
+    right: 1000px !important;
   }
   
   .congrats-text {
@@ -575,7 +574,7 @@ body{
   }
 
   .specialist-text{
-    color: #0000FF;
+    color: #0000FF !important;
   }
 
   @keyframes moveToCorner {
