@@ -698,12 +698,12 @@ body{
 @media only screen and (min-width:6000px) {
   .start-image-left-congrats{
     position: absolute;
-    left: 400px;
+    left: 800px;
   }
   
   .start-image-right-congrat{
     position: absolute;
-    right: 100px;
+    right: 1000px;
   }
   
   .congrats-text {
@@ -712,11 +712,24 @@ body{
     margin-bottom: 10px;
     position: absolute;
     top: 50%;
-    left: 70%;
-    transform: translate(-50%, -70%);
+    left: 50%;
+    transform: translate(-50%, -50%);
     z-index: 2; /* Asegura que esté encima de la imagen */
     animation: moveToCorner 2s ease-out forwards 1.5s; /* 3s delay */
   }
 
+  @keyframes moveToCorner {
+    0% {
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    100% {
+      top: 50px; /* Ajusta la posición según sea necesario */
+      left: 400px; /* Ajusta la posición según sea necesario */
+      transform: translate(0, 0);
+      font-size: 2.5rem; /* Ajusta el tamaño del texto si es necesario */
+    }
+  }
 
 }
