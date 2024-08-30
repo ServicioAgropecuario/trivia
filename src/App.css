@@ -523,7 +523,7 @@ body{
   }
   100% {
     top: 50px; /* Ajusta la posición según sea necesario */
-    left: 400px; /* Ajusta la posición según sea necesario */
+    left: 350px; /* Ajusta la posición según sea necesario */
     transform: translate(0, 0);
     font-size: 2.5rem; /* Ajusta el tamaño del texto si es necesario */
   }
@@ -549,17 +549,47 @@ body{
     opacity: 1;
   }
 }
- 
-@media only screen and (min-width: 500px){
-  .start-container .start-text {
-    color: red 
-  }
-}
 
-@media only screen and (min-width: 1200px) {
+@media (max-width: 1400px){ 
   .start-text{
-    color: blue  !important;
+    color: red;
+  }
+  .start-image-left-congrats{
+    position: absolute;
+    bottom: 50px;
+    left: 80px;
+  }
+
+  .start-image-right-congrat{
+    position: absolute;
+    bottom: 48px;
+    right: 80px;
+  }
+
+  .congrats-text {
+    font-size: 5rem;
+    color: #fff;
+    margin-bottom: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2; /* Asegura que esté encima de la imagen */
+    animation: moveToCorner 2s ease-out forwards 1.5s; /* 3s delay */
+  }
+
+  @keyframes moveToCorner {
+    0% {
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    100% {
+      top: 50px; /* Ajusta la posición según sea necesario */
+      left: 300px; /* Ajusta la posición según sea necesario */
+      transform: translate(0, 0);
+      font-size: 2.5rem; /* Ajusta el tamaño del texto si es necesario */
+    }
   }
   
 }
-
