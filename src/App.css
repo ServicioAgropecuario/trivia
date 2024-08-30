@@ -611,81 +611,110 @@ body{
   }
 }
 
-@media (max-width: 600px) {
-  /* Asegura que el fondo cubra toda la pantalla */
+@media only screen and (max-width: 600px) {
   .App {
-    background-size: cover;
-    background-position: center;
-  }
-
-  /* Contenedor del cuestionario */
-  .quiz-container {
-    width: 95%; /* Ocupa casi todo el ancho disponible */
-    padding: 10px; /* Reduce el padding */
-    margin: 10px auto; /* Añade margen para separar del borde */
-    border-radius: 10px; /* Reduce el radio de los bordes */
-  }
-
-  /* Texto del feedback */
-  .feedback-text {
-    font-size: 12px; /* Tamaño de texto más pequeño */
-    line-height: 1.3; /* Mejora la legibilidad en pantallas pequeñas */
-    text-align: center; /* Centra el texto */
-  }
-
-  /* Imagen de mani */
-  .mani-image {
-    width: 50px; /* Tamaño reducido */
-    height: auto; /* Mantén la proporción de la imagen */
-    margin-top: 10px; /* Añade un pequeño margen superior */
-  }
-
-  /* Ajustes de botones */
-  .quiz-button {
-    font-size: 14px; /* Ajusta el tamaño de la fuente del botón */
-    padding: 8px 12px; /* Reduce el padding para que el botón sea más compacto */
-    margin: 10px 0; /* Añade espacio entre los botones */
-    width: 100%; /* Ocupa todo el ancho disponible */
-  }
-
-  /* Ajuste de los márgenes y paddings */
-  .section-title, .question-text {
-    margin: 10px 0; /* Reduce los márgenes */
-    font-size: 16px; /* Ajusta el tamaño de las fuentes */
-  }
-
-  /* Espaciado para la sección de respuestas */
-  .answers-section {
-    margin-top: 10px; /* Reduce el espacio superior */
-  }
-
-  /* Imagen superior del cuestionario */
-  .quiz-header-image {
-    width: 80px; /* Tamaño reducido */
-    margin: -40px auto 10px auto; /* Ajusta el margen para centrar la imagen y manejar el solapamiento */
-  }
-
-  /* Ajuste de la animación de entrada */
-  .blue-corner {
-    width: 30px; /* Tamaño más pequeño para la esquina animada */
-    height: 30px;
-  }
-
-  .start-image-left {
-    position: absolute;
-    bottom: 15px;
-    left: 25px;
-    max-width: 40px;
+    flex-direction: column;
     height: auto;
-    z-index: 1;
+    padding: 20px;
+    height: 100vh;
+    width: 100vw;
+  }
+
+  .start-container, .quiz-container {
+    height: auto; 
+    width: 100%;
+    padding: 10px;
+  }
+
+  .start-image-wrapper {
+    width: 80%; 
+  }
+
+  .start-text {
+    font-size: 2rem; 
+  }
+
+  .quiz-container {
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+    margin-left: 30px;
+  }
+
+  .quiz-content {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .question-section p {
+    font-size: 1.2rem; 
+    margin-right: 0;
+  }
+
+  .answers-section {
+    padding: 0;
+    width: 100%; 
+  }
+
+  .answer-option {
+    font-size: 1rem;
+  }
+
+  .question-info {
+    font-size: 18px;
+    top: 20px;
+    left: 20px;
+  }
+
+  .start-image-left, .start-image-right {
+    max-width: 50px;
+    bottom: 10px;
+  }
+
+  .blue-corner {
+    bottom: 10px;
+    left: 10px;
+    width: 50px;
+  }
+
+  .congrats-image {
+    max-width: 80%;
+  }
+
+  .congrats-text {
+    font-size: 3rem;
+  }
+
+  .specialist-text {
+    font-size: 2.5rem;
+  }
+
+  .mani-image{
+    top: 70px;
+    max-width: 100px;
+  }
+}
+
+@media only screen and (min-width:6000px) {
+  .start-image-left-congrats{
+    left: 400px;
   }
   
-  .start-image-right {
-    position: absolute;
-    bottom: 15px;
-    right: 20px;
-    max-width: 90px;
-    height: auto;
-    z-index: 1;
+  .start-image-right-congrat{
+    bottom: 100px;
   }
+  
+  .congrats-text {
+    font-size: 5rem;
+    color: #fff;
+    margin-bottom: 10px;
+    position: absolute;
+    top: 50%;
+    left: 70%;
+    transform: translate(-50%, -50%);
+    z-index: 2; /* Asegura que esté encima de la imagen */
+    animation: moveToCorner 2s ease-out forwards 1.5s; /* 3s delay */
+  }
+
+
 }
