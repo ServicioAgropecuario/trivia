@@ -695,7 +695,7 @@ body{
   }
 }
 
-@media only screen and (min-width:6000px) {
+@media only screen and (min-width:4000px) {
   .start-image-left-congrats{
     position: absolute;
     left: 800px;
@@ -708,7 +708,7 @@ body{
   
   .congrats-text {
     font-size: 5rem;
-    color: #fff;
+    color: red;
     margin-bottom: 10px;
     position: absolute;
     top: 50%;
