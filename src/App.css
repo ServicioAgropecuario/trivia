@@ -393,7 +393,7 @@ body{
 
 .specialist-text {
   font-size: 4rem;
-  color: #fff;
+  color: orange;
   position: absolute;
   top: calc(50% + 10px); /* Ajusta según la posición que necesites */
   left: 50%;
@@ -551,6 +551,50 @@ body{
 }
 
 
+@media only screen and (min-width:2000px) {
+  .start-image-left-congrats{
+    position: absolute;
+    left: 800px;
+  }
+  
+  .start-image-right-congrat{
+    position: absolute;
+    right: 1000px;
+  }
+  
+  .congrats-text {
+    font-size: 5rem;
+    color: red;
+    margin-bottom: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2; /* Asegura que esté encima de la imagen */
+    animation: moveToCorner 2s ease-out forwards 1.5s; /* 3s delay */
+  }
+
+  .specialist-text{
+    color: #0000FF;
+  }
+
+  @keyframes moveToCorner {
+    0% {
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    100% {
+      top: 50px; /* Ajusta la posición según sea necesario */
+      left: 400px; /* Ajusta la posición según sea necesario */
+      transform: translate(0, 0);
+      font-size: 2.5rem; /* Ajusta el tamaño del texto si es necesario */
+    }
+  }
+
+}
+
+
 @media screen and (max-width: 1024px) {
   .App {
     height: auto; /* Permite que el contenido se adapte a la altura del dispositivo */
@@ -693,43 +737,4 @@ body{
     top: 70px;
     max-width: 100px;
   }
-}
-
-@media only screen and (min-width:2000px) {
-  .start-image-left-congrats{
-    position: absolute;
-    left: 800px;
-  }
-  
-  .start-image-right-congrat{
-    position: absolute;
-    right: 1000px;
-  }
-  
-  .congrats-text {
-    font-size: 5rem;
-    color: red;
-    margin-bottom: 10px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 2; /* Asegura que esté encima de la imagen */
-    animation: moveToCorner 2s ease-out forwards 1.5s; /* 3s delay */
-  }
-
-  @keyframes moveToCorner {
-    0% {
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-    100% {
-      top: 50px; /* Ajusta la posición según sea necesario */
-      left: 400px; /* Ajusta la posición según sea necesario */
-      transform: translate(0, 0);
-      font-size: 2.5rem; /* Ajusta el tamaño del texto si es necesario */
-    }
-  }
-
 }
