@@ -550,3 +550,8 @@ body{
   }
 }
  
+@media  screen and (max-width: 1024px) {
+    .start-text{
+      color: red;
+    }
+}
