@@ -697,11 +697,13 @@ body{
 
 @media only screen and (min-width:6000px) {
   .start-image-left-congrats{
+    position: absolute;
     left: 400px;
   }
   
   .start-image-right-congrat{
-    bottom: 100px;
+    position: absolute;
+    right: 100px;
   }
   
   .congrats-text {
@@ -711,7 +713,7 @@ body{
     position: absolute;
     top: 50%;
     left: 70%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -70%);
     z-index: 2; /* Asegura que esté encima de la imagen */
     animation: moveToCorner 2s ease-out forwards 1.5s; /* 3s delay */
   }
