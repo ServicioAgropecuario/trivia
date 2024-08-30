@@ -556,9 +556,9 @@ body{
   }
 }
 
-@media only screen and (min-width: 1200px) {
+@media only screen and (min-width: 3000px) {
   .start-text {
-    color: orange;
+    color: blue;
     font-size: 2.5rem; /* Ajusta el tamaño si es necesario para pantallas más grandes */
   }
 }
