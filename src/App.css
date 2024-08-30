@@ -550,9 +550,9 @@ body{
   }
 }
  
-@media only screen and (min-width: 768px) {
-  .start-text {
-    color: red;
+@media only screen and (min-width: 768px) and (max-width: 1199px) {
+  .start-container .start-text {
+    color: red !important;
   }
 }
 
