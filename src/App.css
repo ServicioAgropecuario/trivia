@@ -550,15 +550,16 @@ body{
   }
 }
  
-@media only screen and (min-width: 768px) and (max-width: 1199px) {
+@media only screen and (min-width: 500px){
   .start-container .start-text {
-    color: red !important;
+    color: red 
   }
 }
 
-@media only screen and (min-width: 3000px) {
-  .start-text {
-    color: blue;
-    font-size: 2.5rem; /* Ajusta el tamaño si es necesario para pantallas más grandes */
+@media only screen and (min-width: 1200px) {
+  .start-text{
+    color: blue  !important;
   }
+  
 }
+
