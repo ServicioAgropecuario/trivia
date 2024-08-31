@@ -5,6 +5,7 @@ import maniImagen from "/assets/Personaje.webp";
 import imgCorner from "/assets/Formaazul.png"
 import Logo from "/assets/Logo.png"
 import imgCornerWhite from "/assets/Formablanca.png"
+
 const Trivia = () => {
   const questions = [
     {
@@ -43,6 +44,7 @@ const Trivia = () => {
   const [showCongratulations, setShowCongratulations] = useState(false);
   const [isGameStart, setIsGameStart] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
+  const [isAnswerSubmitted, setIsAnswerSubmitted] = useState(false);
 
   // Estado para el contador de encuestas
   const [surveyCount, setSurveyCount] = useState(() => {
@@ -52,9 +54,47 @@ const Trivia = () => {
   });
 
   useEffect(() => {
-    if (selectedAnswer !== null) {
-      const isAnswerCorrect =
-        selectedAnswer === questions[currentQuestion].correctAnswer;
+    if (showCongratulations) {
+      // Reiniciar automáticamente después de 10 segundos
+      const autoRestartTimer = setTimeout(() => {
+        handleRestartQuiz();
+      }, 10000);
+      return () => clearTimeout(autoRestartTimer);
+    }
+  }, [showCongratulations]);
+
+  const handleStartQuiz = () => {
+    setIsLoading(true);
+    setShowQuiz(true);
+    setCurrentQuestion(0);
+    setSelectedAnswer(null);
+    setIsCorrect(null);
+    setFeedback(null);
+    setShowCongratulations(false);
+    setIsGameStart(true);
+    setIsAnswerSubmitted(false);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 6000);
+  };
+
+  const handleRestartQuiz = () => {
+    setShowQuiz(false);
+    setCurrentQuestion(0);
+    setSelectedAnswer(null);
+    setIsCorrect(null);
+    setFeedback(null);
+    setShowCongratulations(false);
+    setIsGameStart(true);
+    setIsAnswerSubmitted(false);
+  };
+
+  const handleAnswerSelect = (index) => {
+    if (!isLoading && !isAnswerSubmitted) {
+      setSelectedAnswer(index);
+      setIsAnswerSubmitted(true);
+      
+      const isAnswerCorrect = index === questions[currentQuestion].correctAnswer;
       setIsCorrect(isAnswerCorrect);
 
       const feedbackMessage = isAnswerCorrect
@@ -63,9 +103,9 @@ const Trivia = () => {
 
       setFeedback({ message: feedbackMessage });
 
-      const feedbackDuration = isAnswerCorrect ? 3000 : 3000; // Ajusta el tiempo según sea necesario
+      const feedbackDuration = 3000;
 
-      const timer = setTimeout(() => {
+      setTimeout(() => {
         if (isAnswerCorrect) {
           if (currentQuestion < questions.length - 1) {
             setCurrentQuestion(currentQuestion + 1);
@@ -79,56 +119,18 @@ const Trivia = () => {
           }
         } else {
           setFeedback(null);
-          setShowQuiz(false); // Volver a la pantalla de inicio
+          setShowQuiz(false);
         }
+        setIsAnswerSubmitted(false);
       }, feedbackDuration);
 
       // Incrementar el contador en la primera pregunta
-      if (currentQuestion === 0 && selectedAnswer !== null && isGameStart) {
+      if (currentQuestion === 0 && isGameStart) {
         const newCount = surveyCount + 1;
         console.log("Contador de encuestas actualizado a:", newCount);
         setSurveyCount(newCount);
         localStorage.setItem('surveyCount', newCount);
       }
-      if (showCongratulations) {
-        // Reiniciar automáticamente después de 10 segundos
-        const autoRestartTimer = setTimeout(() => {
-          handleRestartQuiz();
-        }, 10000);
-        return () => clearTimeout(autoRestartTimer);
-      }
-
-      return () => clearTimeout(timer);
-    }
-  }, [selectedAnswer, currentQuestion, showCongratulations, isGameStart]);
-
-  const handleStartQuiz = () => {
-    setIsLoading(true);
-    setShowQuiz(true);
-    setCurrentQuestion(0);
-    setSelectedAnswer(null);
-    setIsCorrect(null);
-    setFeedback(null); // Asegúrate de que el feedback se reinicie
-    setShowCongratulations(false);
-    setIsGameStart(true);
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 6000);
-  };
-
-  const handleRestartQuiz = () => {
-    setShowQuiz(false);
-    setCurrentQuestion(0);
-    setSelectedAnswer(null);
-    setIsCorrect(null);
-    setFeedback(null); // Asegúrate de que el feedback se reinicie
-    setShowCongratulations(false);
-    setIsGameStart(true);
-  };
-
-  const handleAnswerSelect = (index) => {
-    if (!isLoading) {
-      setSelectedAnswer(index);
     }
   };
 
@@ -204,17 +206,19 @@ const Trivia = () => {
                       <div
                         key={index}
                         className={`answer-option ${
-                          isCorrect === false && selectedAnswer === index
-                            ? "incorrect"
+                          isAnswerSubmitted && selectedAnswer === index
+                            ? isCorrect
+                              ? "correct"
+                              : "incorrect"
                             : ""
-                        } ${isLoading ? "disabled" : ""}`}
+                        } ${isLoading || isAnswerSubmitted ? "disabled" : ""}`}
                       >
                         <input
                           type="checkbox"
                           id={`answer-${index}`}
                           checked={selectedAnswer === index}
                           onChange={() => handleAnswerSelect(index)}
-                          disabled={isCorrect !== null || isLoading}
+                          disabled={isAnswerSubmitted || isLoading}
                         />
                         <label htmlFor={`answer-${index}`}>{choice}</label>
                       </div>

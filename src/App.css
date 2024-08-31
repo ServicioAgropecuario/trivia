@@ -174,12 +174,13 @@ body{
   width: 100%; 
 }
 
+
 .answer-option {
   font-size: 1.2rem;
   margin-right: 20px;
   margin-bottom: 10px;
+  transition: all 0.3s ease;
 }
-
 .answer-option input[type="checkbox"] {
   display: none;
 }
@@ -192,15 +193,6 @@ body{
   
 }
 
-.answer-option .checkbox-container {
-  position: relative;
-  width: 2rem;
-  height: 2rem;
-  margin-right: 10px;
-  background-color: #88baca;
-  border-radius: 8px 8px 8px 0;
-  overflow: visible; /* Permite que el ícono sobresalga */
-}
 
 .answer-option label::before {
   content: ''; 
@@ -211,22 +203,32 @@ body{
   border-radius: 8px 8px 8px 0;
   position: relative;
   z-index: 1;
-  overflow: visible;
+  transition: all 0.3s ease;
 }
 
-.answer-option input[type="checkbox"]:checked + label .checkbox-container::after {
-  content: '';
-  position: absolute;
-  top: -10px; /* Ajusta para que sobresalga */
-  left: -10px; /* Ajusta para que sobresalga */
-  width: 3rem;
-  height: 3rem;
-  background-image: url('/assets/check.png');
-  background-position: center;
-  background-size: contain;
-  background-repeat: no-repeat;
-  z-index: 2; /* Asegura que el ícono esté por encima */
+
+.answer-option .checkbox-container {
+  position: relative;
+  width: 2rem;
+  height: 2rem;
+  margin-right: 10px;
+  background-color: #88baca;
+  border-radius: 8px 8px 8px 0;
+  overflow: visible; /* Permite que el ícono sobresalga */
 }
+
+/*.answer-option label::before {
+  content: ''; 
+  width: 2rem;
+  height: 2rem;
+  margin-right: 10px;
+  background-color: #88baca; 
+  border-radius: 8px 8px 8px 0;
+  position: relative;
+  z-index: 1;
+  overflow: visible;
+}*/
+
 
 .answer-option input[type="checkbox"]:checked + label::before {
   background-image: url('/assets/check.png');
@@ -241,6 +243,12 @@ body{
   background-position: center;
   background-size: 80%;
 }
+
+.answer-option.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
 
 .question-info {
   font-size: 25px;
