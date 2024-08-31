@@ -12,6 +12,27 @@ const Trivia = () => {
       choices: ["China", "Argentina", "Estados Unidos"],
       correctAnswer: 0,
     },
+    {
+      question: "¿Qué nutriente es especialmente abundante en el maní?",
+      choices: ["Proteína", "Carbohidratos", "Calcio"],
+      correctAnswer: 0,
+    },
+    {
+      question: "¿En qué región de Argentina es más común el cultivo de maní?",
+      choices: ["Patagonia", "Pampa Húmeda", "Córdoba"],
+      correctAnswer: 2,
+    },
+    {
+      question: "¿Qué vitamina es abundante en el maní?",
+      choices: ["Vitamina C", "Vitamina B3", "Vitamina D"],
+      correctAnswer: 1,
+    },
+    {
+      question:
+        "¿Qué ciudad de la provincia de Córdoba es conocida como 'La Capital Nacional del Maní'?",
+      choices: ["General Deheza", "Hernando", "General Cabrera"],
+      correctAnswer: 1,
+    },
   ];
 
   const [showQuiz, setShowQuiz] = useState(false);
