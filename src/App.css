@@ -174,13 +174,12 @@ body{
   width: 100%; 
 }
 
-
 .answer-option {
   font-size: 1.2rem;
   margin-right: 20px;
   margin-bottom: 10px;
-  transition: all 0.3s ease;
 }
+
 .answer-option input[type="checkbox"] {
   display: none;
 }
@@ -193,20 +192,6 @@ body{
   
 }
 
-
-.answer-option label::before {
-  content: ''; 
-  width: 2rem;
-  height: 2rem;
-  margin-right: 10px;
-  background-color: #88baca; 
-  border-radius: 8px 8px 8px 0;
-  position: relative;
-  z-index: 1;
-  transition: all 0.3s ease;
-}
-
-
 .answer-option .checkbox-container {
   position: relative;
   width: 2rem;
@@ -217,7 +202,7 @@ body{
   overflow: visible; /* Permite que el ícono sobresalga */
 }
 
-/*.answer-option label::before {
+.answer-option label::before {
   content: ''; 
   width: 2rem;
   height: 2rem;
@@ -227,8 +212,8 @@ body{
   position: relative;
   z-index: 1;
   overflow: visible;
-}*/
-
+  transition: background-color 0.3s ease, background-image 0.3s ease;
+}
 
 .answer-option input[type="checkbox"]:checked + label::before {
   background-image: url('/assets/check.png');
@@ -246,9 +231,8 @@ body{
 
 .answer-option.disabled {
   pointer-events: none;
-  opacity: 0.5;
+  opacity: 0.7;
 }
-
 
 .question-info {
   font-size: 25px;
@@ -562,7 +546,7 @@ body{
   .start-image-left-congrats{
     position: absolute;
     bottom: 50px;
-    left: 300px;
+    left: 200px;
   }
 
   .start-image-right-congrat{
