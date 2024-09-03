@@ -242,6 +242,11 @@ body{
   color: #0000FF; 
 }
 
+.survey-count {
+  position: absolute;
+  z-index: 30px;
+}
+
 .blue-corner {
   position: absolute;
   bottom: 20px;

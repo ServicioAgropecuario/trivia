@@ -230,7 +230,11 @@ const Trivia = () => {
             </div>
           )}
         </>
-      )}     
+      )}  
+      <div className="survey-count">
+        {
+          surveyCount          
+        }</div>   
     </div>
   );
 };
